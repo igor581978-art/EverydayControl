@@ -2,11 +2,12 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Запуск...</title>
+    <title>Запуск панелі...</title>
 </head>
-<body style="background: #ffffff;" onclick="run()">
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-        <p style="font-family: sans-serif; color: #555;">Натисніть будь-де для запуску робочих ресурсів...</p>
+<body style="background: #ffffff; margin: 0;" onclick="openAll()">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center;">
+        <h2 style="font-family: sans-serif; color: #333;">Натисніть тут для запуску (15 вкладок)</h2>
+        <p style="font-family: sans-serif; color: #888;">Якщо не відкрилися — перевірте дозвіл на "Pop-ups" у рядку адреси</p>
     </div>
 
     <script>
@@ -28,16 +29,22 @@
             'https://ips.ligazakon.net/lawnews/list?condition=day'
         ];
 
-        function run() {
-            urls.forEach(url => window.open(url, '_blank'));
-            // Пробуем закрыть вкладку запуска автоматически
-            window.close();
-            // Если браузер запретил закрытие (редко), текст подскажет, что делать
-            document.body.innerHTML = "<h2 style='text-align:center;font-family:sans-serif;margin-top:20%'>Готово! Цю вкладку можна закрити.</h2>";
+        function openAll() {
+            urls.forEach((url, index) => {
+                // Открываем каждую ссылку с нарастающей задержкой в 300мс
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, index * 300);
+            });
+
+            // Через 5 секунд после начала предлагаем закрыть окно
+            setTimeout(() => {
+                document.querySelector('h2').innerText = "Готово! Цю вкладку можна закрити.";
+            }, urls.length * 300 + 1000);
         }
 
-        // Попытка автозапуска (сработает, если браузер уже "доверяет" сайту)
-        window.onload = run;
+        // Пытаемся запустить сразу при загрузке (если браузер позволит)
+        window.onload = openAll;
     </script>
 </body>
 </html>
