@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Triada Work Panel</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #eceff1; margin: 0; }
+        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        h1 { color: #2c3e50; margin-bottom: 25px; font-size: 24px; }
+        button { padding: 18px 35px; font-size: 18px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 6px; transition: 0.3s; }
+        button:hover { background: #0056b3; transform: translateY(-2px); }
+        .hint { margin-top: 15px; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Рабочие инструменты</h1>
+        <button onclick="openAll()">Открыть все вкладки (14)</button>
+        <p class="hint">При первом нажатии разрешите браузеру "Всплывающие окна"</p>
+    </div>
+
+    <script>
+        function openAll() {
+            const urls = [
+                'https://diia.gov.ua/services/vijskovo-oblikovij-dokument',
+                'https://diia.gov.ua/services/vityag-pro-nesudimist',
+                'https://vs12.ukrdomen.com/roundcube/?_task=mail&_mbox=INBOX',
+                'https://triada.kpi-check.online/auth/login',
+                'https://edo.vchasno.ua/auth/start',
+                'https://document.online/',
+                'https://connect.dealssign.com/interaction/a612e4a9-356b-4239-9669-dfb781c33aa6',
+                'https://youcontrol.com.ua/contractor/?id=9341729',
+                'https://reyestr.court.gov.ua/',
+                'https://tax.gov.ua/diyalnist-/plani-ta-zviti-roboti-',
+                'https://asvpweb.minjust.gov.ua/#/search-debtors',
+                'https://finance.ua/ru/currency',
+                'https://bank.gov.ua/ua/supervision/reorganizat-liquidat/reorganiz-history',
+                'https://ips.ligazakon.net/lawnews/list?condition=day'
+            ];
+            urls.forEach(url => window.open(url, '_blank'));
+        }
+    </script>
+</body>
+</html>
